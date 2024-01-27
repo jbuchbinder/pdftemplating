@@ -1,9 +1,9 @@
 module github.com/jbuchbinder/pdftemplating
 
-go 1.19
+go 1.21
 
 require (
-	github.com/go-pdf/fpdf v0.6.0
+	github.com/go-pdf/fpdf v0.9.0
 	github.com/karmdip-mi/go-fitz v0.0.0-20210702102225-a530a79566e9
 )
 
