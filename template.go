@@ -12,6 +12,7 @@ type TemplateGenerator struct {
 	Template             string
 	OverrideReplacements map[string]string
 	Replacements         map[string]Replacement
+	FontDir              string
 	Debug                bool
 }
 
@@ -31,8 +32,11 @@ func (g *TemplateGenerator) Generate(fn string, repl map[string]string) error {
 	tpl := imp.ImportPage(pdf, g.Template, 1, "/MediaBox")
 	pageSizes := imp.GetPageSizes()
 
-	// TODO: FIXME: Specify in configuration
-	pdf.SetFontLocation("fonts")
+	if g.FontDir == "" {
+		pdf.SetFontLocation("fonts")
+	} else {
+		pdf.SetFontLocation(g.FontDir)
+	}
 
 	for _, r := range g.Replacements {
 		g.logPrintf("Add font %s : %s", r.FontFamily, r.FontJson)
